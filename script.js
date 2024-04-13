@@ -37,27 +37,32 @@ input.addEventListener('keyup',()=>{
 
 // Filter Button
 const companiesDOM = document.querySelector('.companies');
-function show (){
+function displayButtons(){
   let buttons = ['all',...new Set(products.map(product=> product.company))]
-    companiesDOM.innerHTML = buttons.map((company)=>{
-    return `<button class ='company-btn' data-id=${company}>${company}</button>`
+  companiesDOM.innerHTML = buttons.map((company)=>{
+    return`<button class ='company-btn' data-id=${company}>${company}</button>`   
   }).join('')
-
 }
-show()
-companiesDOM.addEventListener('click',(e)=>{
+displayButtons()
+
+companiesDOM.addEventListener('click', (e)=>{
   const el = e.target
   if(el.classList.contains('company-btn')){
     if(el.dataset.id === 'all'){
-      filteredProduct = [...products];
+      filteredProduct=[...products]
+
     }else{
       filteredProduct = products.filter((product)=>{
         return product.company === el.dataset.id
       })
     }
+    
   }
-  searchInput.value = '';
+  searchInput.value='';
   display()
 })
+
+
+
 
 // Map iterate over an array an return an array base on the size of the original array 
